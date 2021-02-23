@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Wedding Page";
+}
+@model Wedding
+
+<div class="container text-center">
+    <h1 class="display-4">
+        <img src="~/img/wedding.jpg" alt="Wedding Flowers" style="max-width: 25%; margin: auto;">
+        Plan a Wedding!
+        <img src="~/img/wedding.jpg" alt="Wedding Flowers" style="max-width: 25%; margin: auto;">
+    </h1>
+</div>
+<div class="container">
+    <form asp-action="NewWedding" method="post">
+        <div class='form-group'>
+            <label asp-for="Bride"></label>
+            <input class="form-control" asp-for="Bride" placeholder= "Enter Bride's Name">
+            <span asp-validation-for="Bride" class="text-danger"></span>
+        </div> 
+        <div class='form-group'>
+            <label asp-for="Groom"></label>
+            <input class="form-control" asp-for="Groom" placeholder= "Enter Groom's Name">
+            <span asp-validation-for="Groom" class="text-danger"></span>
+        </div> 
+        <div class='form-group'>
+            <label asp-for="WeddingDate"></label>
+            <input type="date" class="form-control" asp-for="WeddingDate" placeholder= "Enter Wedding Date">
+            <span asp-validation-for="WeddingDate" class="text-danger"></span>
+        </div> 
+        <div class='form-group'>
+            <label asp-for="Address"></label>
+            <input class="form-control" asp-for="Address" placeholder= "Enter Address">
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div> 
+        <button type="submit" class="btn btn-primary">Enter Wedding!</button>
+    </form>
+</div>

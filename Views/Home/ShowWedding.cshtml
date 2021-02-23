@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Weddings Page";
+}
+
+<div class="container">
+    <h1 class="display-4">@Model.Groom and @Model.Bride's Wedding<img src="~/img/wedding.jpg" alt="Wedding Flowers" style="max-width: 25%; margin: auto;"></h1>
+    <h4>Date: @Model.WeddingDate.ToString("d")</h4>
+    <h4>Address: @Model.Address</h4>
+    <div class="row">
+        <div class="col border">
+        <h4>Guests:</h4>
+            <ul>
+                @foreach (var item in @Model.RSVPs)
+                {
+                    <li><h4>@item.UserRSVPd.FirstName</h4></li>
+                }
+            </ul>
+        </div>
+        <div class="col">
+            <div class="col p-5">
+                <iframe width="100%" height="450" frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/directions?origin=@ViewBag.CurrentUser.Address&destination=@Model.Address&key={YourAPIKey}"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+</div>

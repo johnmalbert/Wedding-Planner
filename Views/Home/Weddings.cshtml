@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "All Weddings";
+}
+@* @ViewBag.CurrentUser *@
+@* ViewBag.NotRSVPd = NonRSVPWeddings; *@
+@{
+   var NotRSVPd = @ViewBag.NotRSVPd;
+}
+@using System.Collections.Generic;
+<div class="container text-center">
+    <h1 class="display-4">
+        <img src="~/img/wedding.jpg" alt="Wedding Flowers" style="max-width: 25%; margin: auto;">
+        All the Weddings
+        <img src="~/img/wedding.jpg" alt="Wedding Flowers" style="max-width: 25%; margin: auto;">
+    </h1>
+</div>
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Bride</th>
+                <th scope="col">Groom</th>
+                <th scope="col">Date</th>
+                <th scope="col">Wedding Link</th>
+                <th scope="col">Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Wedding w in @Model)
+            {
+                    <tr>
+                        <td>@w.Bride</td>
+                        <td>@w.Groom</td>
+                        <td>@w.WeddingDate.ToString("d")</td>
+                        <td><a href="/weddings/@w.WeddingId"> @w.Bride and @w.Groom's Wedding</a></td>
+                        @if(@w.Creator.UserId == @ViewBag.CurrentUser.UserId)
+                        {
+                            <td><a href="/cancel/@w.WeddingId">Cancel</a></td>
+                        }
+                        else if(!NotRSVPd.Contains(@w))
+                        {
+                            <td><a href="/RSVP/@w.WeddingId">Delete RSVP</a></td>
+                        }
+                        else
+                        {
+                            <td><a href="/RSVP/@w.WeddingId">RSVP</a></td>
+                        }
+                    </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col text-center"><a href="/wedding"><button class="btn btn-primary">Create a Wedding</button></a></div>
+</div>
